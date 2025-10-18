@@ -11,4 +11,3 @@ const Dashboard = () => {
 
 export default Dashboard
 
-<h1>DashBoard</h1>
