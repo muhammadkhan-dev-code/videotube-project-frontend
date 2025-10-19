@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 48 48"
+  width="35"
+  height="35"
+>
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7B61FF" />
+      <stop offset="50%" stop-color="#C06CF4" />
+      <stop offset="100%" stop-color="#FF8A65" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded gradient background -->
+  <rect width="48" height="48" rx="12" fill="url(#grad)" />
+
+  <!-- Centered play icon -->
+  <polygon points="20,16 20,32 32,24" fill="white" />
+</svg>
