@@ -37,9 +37,9 @@ const HomePage = () => {
         </p>
       )}
 
-    
+
       {!loading && !error && (
-        <div className="flex flex-wrap gap-x-6 gap-y-10 max-w-[95%] justify-center">
+        <div className="flex flex-wrap gap-x-4 gap-y-10 max-w-[95%] justify-center">
           {videos.length > 0 ? (
             videos
               .filter((video) => video.id?.videoId)
