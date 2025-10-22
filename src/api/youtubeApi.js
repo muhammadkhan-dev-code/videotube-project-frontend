@@ -8,7 +8,7 @@ const fetchData = async (query = "", maxResults = 10) => {
       throw new Error("Failed to fetch data from YouTube API");
 
     const data = await response.json();
-    // console.log(data);
+    
     return data.items;
   } catch (error) {
     console.error("Error fetching data from YouTube API:", error);
