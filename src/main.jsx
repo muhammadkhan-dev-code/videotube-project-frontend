@@ -7,7 +7,7 @@ import { store } from "./store/store";
 
 import "./index.css";
 import App from "./App.jsx";
-import { HomePage, Login } from "./components/index.js";
+import { HomePage, LoginPage,SignupPage } from "./components/index.js";
 
 
 const router = createBrowserRouter(
@@ -16,7 +16,8 @@ const router = createBrowserRouter(
        <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
       </Route>
-      <Route path="/login" element={<Login />} /> 
+      <Route path="/login" element={<LoginPage />} /> 
+      <Route path="/sign-up" element={<SignupPage />} />
     </>
   )
 );

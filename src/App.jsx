@@ -1,10 +1,11 @@
 
 import { Outlet } from "react-router";
-import { Navbar, Sidebar } from "./components/index.js";
+import { Navbar, Sidebar} from "./components/index.js";
 
 function App() {
  
   return (
+    
     <div className="flex flex-col h-screen">
       <Navbar />
      

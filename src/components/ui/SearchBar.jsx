@@ -1,6 +1,6 @@
 import React from "react";
 import { Search } from "lucide-react";
-import Input from "./Input.jsx";
+import {Input} from "../index.js";
 
 
 const SearchBar = () => {
