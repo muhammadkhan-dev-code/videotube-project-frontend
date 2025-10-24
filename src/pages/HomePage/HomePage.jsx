@@ -12,7 +12,7 @@ const HomePage = () => {
   useEffect(() => {
     const loadVideos = async () => {
       try {
-        const data = await fetchData("React Js", 15);
+        const data = await fetchData("Hello", 15);
         setVideos(Array.isArray(data) ? data : []);
       } catch (err) {
         setError(err.message || "Failed to load videos");

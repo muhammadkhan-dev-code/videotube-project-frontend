@@ -13,4 +13,6 @@ export {default as Input } from "./ui/Input.jsx"
 export { default as HomePage } from "../pages/HomePage/HomePage.jsx";
 export { default as LoginPage} from "../pages/Login/LoginPage.jsx";
 export {default as SignupPage} from "../pages/Register/SignupPage.jsx";
+export { default as ProfilePage} from "../pages/ProfilePage/ProfilePage.jsx";
+
 

@@ -7,18 +7,19 @@ import { store } from "./store/store";
 
 import "./index.css";
 import App from "./App.jsx";
-import { HomePage, LoginPage,SignupPage } from "./components/index.js";
+import { HomePage, LoginPage,SignupPage ,ProfilePage} from "./components/index.js";
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-       <Route path="/" element={<App />}>
-        <Route index element={<HomePage />} />
-      </Route>
-      <Route path="/login" element={<LoginPage />} /> 
-      <Route path="/sign-up" element={<SignupPage />} />
-    </>
+  
+      <Route path="/" element={<App />}>
+      <Route index element={<HomePage />} />
+      <Route path="users/login" element={<LoginPage />} />
+      <Route path="users/sign-up" element={<SignupPage />} />
+      <Route path="users/profile" element={<ProfilePage />} />
+    </Route>
+  
   )
 );
 
