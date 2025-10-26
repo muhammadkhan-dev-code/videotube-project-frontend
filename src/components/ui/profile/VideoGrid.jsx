@@ -1,5 +1,5 @@
 import React from "react";
-import VideoCard from "./VideoCard";
+import {VideoCard} from "../../index.js";
 
 const VideoGrid = ({ videos }) => {
   if (!videos.length)

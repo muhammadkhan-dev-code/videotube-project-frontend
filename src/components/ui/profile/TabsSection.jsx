@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../index.jsx";
+import { Button } from "../../index.js";
 
 const TabsSection = () => {
   const [activeTab, setActiveTab] = useState("videos");

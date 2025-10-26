@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getUserProfile } from "../api/userApi"; // API function to fetch user profile
-import CoverImage from "../components/Profile/CoverImage";
-import ProfileHeader from "../components/Profile/ProfileHeader";
-import TabsSection from "../components/Profile/TabsSection";
-import VideoGrid from "../components/Profile/VideoGrid";
-import Loader from "../components/Profile/Loader";
-
+import { getUserProfile } from "../../api/userApi.js"; // API function to fetch user profile
+import { CoverImage,ProfileHeader,TabsSection, VideoGrid,Loader } from "../../components/index.js";
 const ShowProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +10,8 @@ const ShowProfile = () => {
       try {
        
         const res = await getUserProfile();
-        setUser(res?.data?.data || res?.data); // Adjust for API response shape
+        console.log("API Response:", res);
+        setUser(res?.data?.data || res?.data); 
       } catch (error) {
         console.error("Error loading profile:", error);
       } finally {

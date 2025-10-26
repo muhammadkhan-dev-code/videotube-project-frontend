@@ -7,7 +7,7 @@ import { store } from "./store/store";
 
 import "./index.css";
 import App from "./App.jsx";
-import { HomePage, LoginPage,SignupPage ,ProfilePage} from "./components/index.js";
+import { HomePage, LoginPage,SignupPage , ShowProfile} from "./components/index.js";
 
 
 const router = createBrowserRouter(
@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="users/login" element={<LoginPage />} />
       <Route path="users/sign-up" element={<SignupPage />} />
-      <Route path="users/profile" element={<ProfilePage />} />
+      <Route path="users/profile" element={<ShowProfile />} />
     </Route>
   
   )
