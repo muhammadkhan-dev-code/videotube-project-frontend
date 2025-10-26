@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CoverImage = () => {
+const CoverImage = ({image}) => {
   return (
-    <div>
-      
+    <div className="relative w-full h-56 bg-gray-200">
+      <img src={image || "../../../assets/cover-image.jpeg"} alt="cover-image" />
     </div>
   )
 }

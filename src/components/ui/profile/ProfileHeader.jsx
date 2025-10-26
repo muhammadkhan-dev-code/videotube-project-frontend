@@ -1,7 +1,7 @@
 // src/components/Profile/ProfileHeader.jsx
 import React from "react";
 
-const ProfileHeader = ({ coverImage, avatar }) => {
+const ProfileHeader = ({ coverImage, avatar, fullName, username, email }) => {
   return (
     <div className="relative w-full h-56 bg-gray-300">
       <img
@@ -15,6 +15,11 @@ const ProfileHeader = ({ coverImage, avatar }) => {
           alt="Avatar"
           className="w-24 h-24 rounded-full border-4 border-white shadow-md"
         />
+      </div>
+      <div className="absolute bottom-0 left-8 mb-4">
+        <h2 className="text-2xl font-bold text-white">{fullName}</h2>
+        <p className="text-sm text-white">@{username}</p>
+        <p className="text-sm text-white">{email}</p> 
       </div>
     </div>
   );
