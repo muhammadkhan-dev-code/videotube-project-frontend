@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUserProfile } from "../../api/userApi.js"; // API function to fetch user profile
+import { getUserProfile } from "../../api/userApi.js"; 
 import { CoverImage,ProfileHeader,TabsSection, VideoGrid,Loader } from "../../components/index.js";
 const ShowProfile = () => {
   const [user, setUser] = useState(null);

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import { fetchData } from "../../api/youtubeApi";
-import {VideoCard }from "../../components/index.js";
-import {ClosedCaptionIcon} from 'lucide-react'
+import { VideoCard } from "../../components/index.js";
+import { ClosedCaptionIcon } from "lucide-react";
 
 const HomePage = () => {
+  // ✅ Get searchQuery from Outlet context (passed from App.jsx)
+  const { searchQuery } = useOutletContext();
+
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,42 +15,48 @@ const HomePage = () => {
 
   useEffect(() => {
     const loadVideos = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const data = await fetchData("Hello", 15);
+        // ✅ Default query to "JavaScript" if searchQuery is empty
+        const data = await fetchData(searchQuery?.trim() || "JavaScript", 15);
         setVideos(Array.isArray(data) ? data : []);
       } catch (err) {
+        console.error("Error fetching videos:", err);
         setError(err.message || "Failed to load videos");
       } finally {
         setLoading(false);
       }
     };
+
     loadVideos();
-  }, []);
+  }, [searchQuery]);
 
   return (
     <div className="bg-gray-50 min-h-screen py-6 px-4 flex flex-col items-center">
-      {/* Loading & Error States */}
+      {/* ✅ Loading state */}
       {loading && (
         <p className="bg-fuchsia-400 text-black my-20 rounded-2xl w-80 border border-black text-center p-8 text-xl font-semibold">
           Loading videos...
         </p>
       )}
+
+      {/* ✅ Error state */}
       {error && (
         <p className="bg-fuchsia-400 text-black my-20 rounded-2xl w-80 border border-black text-center p-8 text-xl font-semibold">
           Error: {error}
         </p>
       )}
 
-
+      {/* ✅ Videos grid */}
       {!loading && !error && (
         <div className="flex flex-wrap gap-x-4 gap-y-10 max-w-[95%] justify-center">
           {videos.length > 0 ? (
             videos
               .filter((video) => video.id?.videoId)
-              .slice(0, 9)
               .map((video) => (
                 <VideoCard
-               
                   key={video.id.videoId}
                   video={video}
                   onSelect={() => setSelectedVideo(video)}
@@ -60,6 +70,7 @@ const HomePage = () => {
         </div>
       )}
 
+      {/* ✅ Video popup player */}
       {selectedVideo && (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center z-50 p-4 backdrop-blur-sm">
           <div className="relative w-full max-w-4xl aspect-video">
