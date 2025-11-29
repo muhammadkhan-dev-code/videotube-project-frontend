@@ -17,7 +17,7 @@ function App() {
       <div className="flex flex-2">
         <Sidebar />
         <main className="flex-1 p-4 overflow-y-auto">
-          {/* ✅ Pass searchQuery to HomePage via context */}
+        
           <Outlet context={{ searchQuery }} />
         </main>
       </div>

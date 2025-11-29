@@ -10,7 +10,6 @@ const SearchBar = ({ value, onChange, onSearch, onKeyDown }) => {
       console.error("onSearch is not defined or not a function");
     }
   };
-
   return (
     <div className="flex justify-center w-full">
       <div className="flex items-center bg-white border border-gray-300 rounded-full overflow-hidden w-full max-w-3xl h-11 mb-2">
