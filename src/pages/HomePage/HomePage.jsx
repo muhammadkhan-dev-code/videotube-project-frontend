@@ -3,7 +3,6 @@ import { useOutletContext } from "react-router-dom";
 import { fetchData } from "../../api/youtubeApi";
 import { VideoCard,VideoPopup } from "../../components/index.js";
 
-
 const HomePage = () => {
   const { searchQuery } = useOutletContext();
   const [videos, setVideos] = useState([]);
@@ -16,7 +15,7 @@ const HomePage = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchData(searchQuery?.trim() || "JavaScript", 27);
+        const data = await fetchData(searchQuery?.trim() || "JavaScript", 21);
         setVideos(Array.isArray(data) ? data : []);
       } catch (err) {
         setError(err.message || "Failed to load videos");
@@ -53,7 +52,7 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* ⭐ Popup */}
+     
       {selectedVideo && (
         <VideoPopup
           video={selectedVideo}

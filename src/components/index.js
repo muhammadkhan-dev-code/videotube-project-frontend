@@ -1,3 +1,7 @@
+export {default as userApi} from "../api/userApi.js";
+export { default as commentApi } from "../api/commentApi.js";
+export { default as youtubeApi } from "../api/youtubeApi.js";
+
 export { default as Navbar } from "./Navbar.jsx";
 export { default as Sidebar } from "./Sidebar.jsx";
 export {default as logo}from '../assets/logo.svg'
@@ -20,6 +24,11 @@ export {default as SignupPage} from "../pages/Register/SignupPage.jsx";
 export { default as ShowProfile} from "../pages/ProfilePage/ShowProfile.jsx";
 
 export { default as VideoPopup } from "./ui/VideoPopup.jsx";
+
+
+export { default as AddCommentBox } from "./ui/comments/AddCommentBox.jsx";
+export { default as CommentItem } from "./ui/comments/CommentItem.jsx";
+export { default as CommentsList } from "./ui/comments/CommentsList.jsx";
 
 
 
