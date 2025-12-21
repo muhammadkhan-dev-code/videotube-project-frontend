@@ -35,6 +35,10 @@ export const changePassword = async (data) => {
   return await API.post("/change-password", data);
 };
 
+export const forgotPassword = async (email) => {
+  return await API.post("/forgot-password", { email });
+};
+
 // ============ PROFILE ENDPOINTS ============
 
 export const getUserProfile = async () => {

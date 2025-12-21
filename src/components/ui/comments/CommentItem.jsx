@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { deleteComment } from "../../index.js";
-import { EditCommentBox } from "../../index.js";
+import { commentApi, EditCommentBox } from "../../index.js";
 
 export default function CommentItem({ comment, refresh, currentUser }) {
   const [editing, setEditing] = useState(false);
 
   const remove = async () => {
     if (!window.confirm("Delete this comment?")) return;
-    await deleteComment(comment._id);
+    await commentApi.deleteComment(comment._id);
     refresh();
   };
 

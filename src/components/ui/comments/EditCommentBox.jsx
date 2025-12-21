@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateComment } from "../../api/commentApi";
+import { commentApi } from "../../index.js";
 
 export default function EditCommentBox({ comment, cancel, refresh }) {
   const [content, setContent] = useState(comment.content);
@@ -8,7 +8,7 @@ export default function EditCommentBox({ comment, cancel, refresh }) {
   const submit = async () => {
     if (!content.trim()) return;
     setLoading(true);
-    await updateComment(comment._id, { content });
+    await commentApi.updateComment(comment._id, { content });
     setLoading(false);
     refresh();
     cancel();

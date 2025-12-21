@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addComment } from '../../index.js'
+import { commentApi } from '../../index.js'
 
 export default function AddCommentBox({ videoId, refresh }) {
   const [content, setContent] = useState("");
@@ -10,7 +10,7 @@ export default function AddCommentBox({ videoId, refresh }) {
 
     setLoading(true);
     try {
-      await addComment(videoId, { content });
+      await commentApi.addComment(videoId, { content });
       setContent("");
       refresh();
     } 

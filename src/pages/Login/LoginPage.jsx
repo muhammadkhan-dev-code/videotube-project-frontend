@@ -1,20 +1,44 @@
-import React, { useState } from "react";
-import { logo, Button, Input } from "../../components/index.js";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Input, Loader, logo, userApi } from "../../components/index.js";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(""); // Clear error on input change
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await userApi.loginUser(formData);
+      console.log("Login successful:", response.data);
+      
+      // Redirect to home page after successful login
+      navigate("/");
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || "Login failed. Please try again.";
+      setError(errorMessage);
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
@@ -35,6 +59,12 @@ const LoginPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
          
           <Input
           
@@ -60,12 +90,12 @@ const LoginPage = () => {
 
           {/* Forgot password */}
           <div className="text-right text-sm">
-            <a
-              href="/forgot-password"
+            <Link
+              to="/users/forgot-password"
               className="text-purple-600 hover:underline font-medium"
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Sign In Button */}
@@ -73,16 +103,18 @@ const LoginPage = () => {
             name="Sign In"
             type="submit"
             className="w-full mt-3 bg-purple-600 text-white py-3 rounded-full hover:bg-purple-700 transition font-medium"
-            onClick={() => console.log("Sign in clicked")}
           />
         </form>
 
         {/* Sign Up Link */}
         <p className="text-center text-sm text-gray-600 mt-4">
           Don’t have an account?{" "}
-          <a href="/sign-up" className="text-purple-600 font-medium hover:underline">
+          <Link
+            to="/users/sign-up"
+            className="text-purple-600 font-medium hover:underline"
+          >
             Create one
-          </a>
+          </Link>
         </p>
       </div>
     </div>

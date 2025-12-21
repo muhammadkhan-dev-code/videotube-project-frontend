@@ -1,13 +1,13 @@
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store/store"; 
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { store } from "./store/store";
 
-import "./index.css";
 import App from "./App.jsx";
-import { HomePage, LoginPage,SignupPage , ShowProfile} from "./components/index.js";
+import { ChangePassword, ForgotPassword, HomePage, LoginPage, ShowProfile, SignupPage } from "./components/index.js";
+import "./index.css";
 
 
 const router = createBrowserRouter(
@@ -18,6 +18,8 @@ const router = createBrowserRouter(
       <Route path="users/login" element={<LoginPage />} />
       <Route path="users/sign-up" element={<SignupPage />} />
       <Route path="users/profile" element={<ShowProfile />} />
+      <Route path="users/change-password" element={<ChangePassword />} />
+      <Route path="users/forgot-password" element={<ForgotPassword />} />
     </Route>
   
   )
