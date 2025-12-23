@@ -6,7 +6,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query) => {
-    console.log("Searching for:", query); // debug log
+    console.log("Searching for:", query); 
     setSearchQuery(query.trim());
   };
 

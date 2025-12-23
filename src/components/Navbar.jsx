@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { Bell, Mic, PlusCircle, MenuIcon } from "lucide-react";
-import { Button, SearchBar } from "./index.js";
+import { Bell, LayoutDashboard, MenuIcon, MessageSquare, Mic, Upload } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { useAuth } from "../hooks/useAuth";
+import { Button, SearchBar } from "./index.js";
 
 const Navbar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => setQuery(e.target.value);
 
@@ -43,9 +47,53 @@ const Navbar = ({ onSearch }) => {
       </div>
 
       <div className="flex items-center gap-6 text-white">
-        <PlusCircle className="cursor-pointer hover:text-purple-400" size={30} title="Create" />
-        <Bell className="cursor-pointer hover:text-purple-400" size={30} title="Notifications" />
-        <Button name="Sign In" onClick={() => console.log("Sign in clicked")} />
+        {user ? (
+          <>
+            <Upload 
+              className="cursor-pointer hover:text-purple-400" 
+              size={28} 
+              title="Upload Video"
+              onClick={() => navigate("/upload")}
+            />
+            <LayoutDashboard 
+              className="cursor-pointer hover:text-purple-400" 
+              size={28} 
+              title="Dashboard"
+              onClick={() => navigate("/dashboard")}
+            />
+            <MessageSquare 
+              className="cursor-pointer hover:text-purple-400" 
+              size={28} 
+              title="Community"
+              onClick={() => navigate("/tweets")}
+            />
+            <Bell className="cursor-pointer hover:text-purple-400" size={28} title="Notifications" />
+            <div className="relative group">
+              <img 
+                src={user.avatar} 
+                alt={user.fullName}
+                className="w-8 h-8 rounded-full cursor-pointer border-2 border-purple-400"
+                onClick={() => navigate("/users/profile")}
+              />
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block">
+                <button 
+                  onClick={() => navigate("/users/profile")}
+                  className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                >
+                  Profile
+                </button>
+                <button 
+                  onClick={logout}
+                  className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Button name="Sign In" onClick={() => navigate("/users/login")} />
+        )}
       </div>
     </div>
   );

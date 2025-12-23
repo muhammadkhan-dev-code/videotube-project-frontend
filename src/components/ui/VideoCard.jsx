@@ -1,9 +1,20 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const VideoCard = ({ video, onSelect }) => {
+  const navigate = useNavigate();
+  
   if (!video?.snippet) return null;
 
   const { snippet, statistics, contentDetails } = video;
+
+  const handleClick = () => {
+    // If video has an _id from backend, navigate to that route
+    if (video._id) {
+      navigate(`/video/${video._id}`);
+    } else if (onSelect) {
+      onSelect(video);
+    }
+  };
 
   // --- Format duration from ISO8601 to readable format ---
   const formatDuration = (duration) => {
@@ -27,7 +38,7 @@ const VideoCard = ({ video, onSelect }) => {
   return (
     <div
       className="flex flex-col max-w-[436px] hover:scale-[1.02] hover:bg-fuchsia-50 rounded-2xl transition-transform duration-100 ease-in-out cursor-pointer"
-        onClick={onSelect}
+        onClick={handleClick}
     >
       {/* Video Thumbnail */}
       <div className="relative w-full h-[250px] rounded-md overflow-hidden">
